@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mahi Gandhi — GitHub Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --yellow: #FFE194;
+      --off-white: #E8F6EF;
+      --teal-light: #B8DFD8;
+      --navy: #4C4C6D;
+      --navy-dark: #2e2e45;
+      --text: #1a1a2e;
+      --muted: #6b6b88;
+      --bg: #f9faf8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      font-size: 13.5px;
+      line-height: 1.75;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 640px;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: var(--yellow);
+      border-radius: 3px;
+      padding: 2rem 2rem 1.75rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -18px;
+      right: -18px;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.25);
+    }
+
+    .header-meta {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      color: var(--navy);
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .header h1 {
+      font-family: 'Lora', serif;
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--navy-dark);
+      line-height: 1.2;
+      margin-bottom: 0.35rem;
+    }
+
+    .header .subtitle {
+      font-size: 11.5px;
+      color: var(--navy);
+      letter-spacing: 0.02em;
+    }
+
+    .top-nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      padding: 0.4rem 0.75rem;
+      border: 1px solid var(--teal-light);
+      background: rgba(184, 223, 216, 0.22);
+      border-radius: 999px;
+    }
+
+    .top-nav a {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.95rem;
+      color: var(--navy);
+      text-decoration: none;
+      padding: 0.35rem 0.5rem;
+      border-radius: 999px;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .top-nav a:hover {
+      background: rgba(255,255,255,0.8);
+      color: var(--navy);
+    }
+
+    .header-link {
+      margin-top: 0.35rem;
+    }
+
+    .header-link a {
+      color: var(--navy);
+      text-decoration: none;
+      border-bottom: 0.5px solid var(--teal-light);
+      transition: border-color 0.2s;
+    }
+
+    .header-link a:hover {
+      border-color: var(--navy);
+    }
+
+    /* ── Divider ── */
+    hr {
+      border: none;
+      border-top: 0.5px solid var(--teal-light);
+      margin: 2rem 0;
+    }
+
+    /* ── Bio ── */
+    .bio {
+      font-size: 13.5px;
+      color: var(--text);
+      line-height: 1.85;
+      font-weight: 300;
+    }
+
+    /* ── Section label ── */
+    .label {
+      font-size: 10px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--navy);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+
+    /* ── Skills ── */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      background: var(--teal-light);
+      color: #2a4a45;
+      font-size: 11px;
+      font-family: 'DM Mono', monospace;
+      padding: 4px 12px;
+      border-radius: 3px;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── Currently Learning ── */
+    .learning-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .learning-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12.5px;
+      color: var(--text);
+    }
+
+    .learning-list li::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--navy);
+      flex-shrink: 0;
+    }
+
+    /* ── Connect ── */
+    .connect-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .connect-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12.5px;
+    }
+
+    .connect-list li .icon {
+      width: 28px;
+      height: 28px;
+      background: var(--off-white);
+      border: 0.5px solid var(--teal-light);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .connect-list li .icon svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--navy);
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .connect-list a {
+      color: var(--navy);
+      text-decoration: none;
+      border-bottom: 0.5px solid var(--teal-light);
+      transition: border-color 0.2s;
+    }
+    .connect-list a:hover { border-color: var(--navy); }
+
+    .connect-list .muted {
+      color: var(--muted);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      margin-top: 3rem;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+<main class="page">
+
+
+  <header class="header">
+    <h1>Mahi Gandhi</h1>
+  </header>
+
+  <nav class="top-nav">
+    <a href="pdf/CV.pdf" target="_blank" rel="noopener">Academic CV</a>
+    <a href="https://www.linkedin.com/in/mahi-gandhi-336780335" target="_blank" rel="noopener">LinkedIn</a>
+  </nav>
+
+
+  <p class="bio">
+    I am studying Economics and Data Science at Gokhale Institute of Politics and Economics. Alongside academics, I work on creative side projects spanning visual art, animations, and creative coding.
+  </p>
+
+  <hr />
+
+  <section>
+    <p class="label">Skills &amp; Tools</p>
+    <div class="tags">
+      <span class="tag">Python</span>
+      <span class="tag">HTML</span>
+      <span class="tag">SQL</span>
+      <span class="tag">Java</span>
+      <span class="tag">TouchDesigner</span>
+      <span class="tag">Canva</span>
+      <span class="tag">Adobe Photoshop</span>
+    </div>
+  </section>
+
+  <hr />
+
+  <section>
+    <p class="label">Currently Learning</p>
+    <ul class="learning-list">
+      <li>Dashboard &amp; Data Analysis</li>
+      <li>Domain Analysis</li>
+      <li>AI Agent Design</li>
+    </ul>
+  </section>
+
+  <hr />
+
+  <section>
+    <p class="label">Connect</p>
+    <ul class="connect-list">
+      <li>
+        <span class="icon">
+          <!-- LinkedIn icon -->
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </span>
+        <a href="https://www.linkedin.com/in/mahi-gandhi-336780335" target="_blank" rel="noopener">
+          linkedin.com/in/mahi-gandhi-336780335
+        </a>
+      </li>
+      <li>
+        <span class="icon">
+          <!-- Globe icon -->
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+        </span>
+        <span class="muted">Portfolio — coming soon</span>
+      </li>
+      <li>
+        <span class="icon">
+          <!-- Mail icon -->
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </span>
+        <span class="muted">Email — coming soon</span>
+      </li>
+    </ul>
+  </section>
+
+  <p class="footer">mahi-gandhi &nbsp;·&nbsp; 2025</p>
+
+</main>
+</body>
+</html>

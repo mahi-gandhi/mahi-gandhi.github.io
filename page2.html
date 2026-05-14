@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page 2 — Academic CV | Mahi Gandhi</title>
+  <style>
+    :root {
+      --yellow: #FFE194;
+      --off-white: #E8F6EF;
+      --teal-light: #B8DFD8;
+      --navy: #4C4C6D;
+      --navy-dark: #2e2e45;
+      --text: #1a1a2e;
+      --muted: #6b6b88;
+      --bg: #f9faf8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 13.5px;
+      line-height: 1.75;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 640px;
+    }
+
+    .header {
+      background: var(--yellow);
+      border-radius: 3px;
+      padding: 2rem 2rem 1.75rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -18px;
+      right: -18px;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.25);
+    }
+
+    .header-meta {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      color: var(--navy);
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .header h1 {
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--navy-dark);
+      line-height: 1.2;
+      margin-bottom: 0.35rem;
+    }
+
+    .header .subtitle,
+    .header .header-link {
+      font-size: 11.5px;
+      color: var(--navy);
+      letter-spacing: 0.02em;
+      margin-bottom: 0.3rem;
+    }
+
+    .header .header-link a {
+      color: var(--navy);
+      text-decoration: none;
+      border-bottom: 0.5px solid var(--teal-light);
+      transition: border-color 0.2s;
+    }
+
+    .header .header-link a:hover {
+      border-color: var(--navy);
+    }
+
+    hr {
+      border: none;
+      border-top: 0.5px solid var(--teal-light);
+      margin: 2rem 0;
+    }
+
+    .label {
+      font-size: 10px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--navy);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-card {
+      margin-bottom: 1.5rem;
+    }
+
+    .section-card h2 {
+      font-size: 1rem;
+      margin-bottom: 0.35rem;
+      color: var(--navy-dark);
+    }
+
+    .section-card p,
+    .section-card li {
+      font-size: 13.5px;
+      color: var(--text);
+      line-height: 1.85;
+    }
+
+    .section-card ul {
+      list-style: none;
+      padding-left: 0;
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .section-detail {
+      display: grid;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-detail strong {
+      display: block;
+      color: var(--navy);
+      font-size: 0.95rem;
+    }
+
+    .footer {
+      margin-top: 3rem;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+<main class="page">
+
+  <header class="header">
+    <p class="header-meta">Academic CV — Page 2</p>
+    <h1>Academic Profile</h1>
+    <p class="subtitle">Continuation of my academic CV with education, research, and honors.</p>
+    <p class="header-link"><a href="index.html">Back to page 1</a></p>
+  </header>
+
+  <section>
+    <p class="label">Education</p>
+    <div class="section-card">
+      <div class="section-detail">
+        <strong>Bachelor of Science in Economics (Data Science)</strong>
+        <span>Gokhale Institute of Politics and Economics — Expected 2026</span>
+      </div>
+      <div class="section-detail">
+        <strong>Key areas of study</strong>
+        <span>Econometrics, Mathematical Economics, Data Analysis, Machine Learning, Public Policy, Experimental Methods</span>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <section>
+    <p class="label">Research &amp; Projects</p>
+    <div class="section-card">
+      <div class="section-detail">
+        <strong>Data-Driven Policy Analysis</strong>
+        <span>Designed an econometric study to evaluate household income impacts from local policy change, using Python and time-series methods.</span>
+      </div>
+      <div class="section-detail">
+        <strong>Interactive Visualization Project</strong>
+        <span>Built a dashboard prototype to explore education outcomes with interactive charts and spatial data using HTML, JavaScript, and Python.</span>
+      </div>
+      <div class="section-detail">
+        <strong>AI Agent Design for Creative Coding</strong>
+        <span>Developed an experimental agent-oriented workflow for procedural art and creative data storytelling in TouchDesigner.</span>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <section>
+    <p class="label">Relevant Coursework</p>
+    <div class="section-card">
+      <ul>
+        <li>Advanced Econometrics</li>
+        <li>Statistical Inference</li>
+        <li>Data Mining &amp; Machine Learning</li>
+        <li>Macro-Financial Modeling</li>
+        <li>Quantitative Research Methods</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr />
+
+  <section>
+    <p class="label">Awards &amp; Honors</p>
+    <div class="section-card">
+      <ul>
+        <li>Academic Excellence Scholarship — Gokhale Institute</li>
+        <li>Research Presentations — Student Symposium 2025</li>
+        <li>Dean’s List — Consecutive terms for academic achievement</li>
+      </ul>
+    </div>
+  </section>
+
+  <p class="footer">mahi-gandhi &nbsp;·&nbsp; 2025</p>
+
+</main>
+</body>
+</html>
