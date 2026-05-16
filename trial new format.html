@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mahi Gandhi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Geist+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink:       #111109;
+      --paper:     #F8F6F0;
+      --warm:      #EDE8DC;
+      --rule:      #D4CBBA;
+      --accent:    #1B3A8C;
+      --ghost:     #A09880;
+      --white:     #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Geist Mono', monospace;
+      font-size: 12.5px;
+      line-height: 1.75;
+    }
+
+    /* ─── STICKY NAV ─── */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--paper);
+      border-bottom: 0.5px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      height: 48px;
+    }
+
+    .top-nav .logo {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    .top-nav .logo em {
+      font-style: italic;
+      color: var(--ghost);
+      font-size: 0.8rem;
+    }
+
+    .top-nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .top-nav-links a {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--ghost);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .top-nav-links a:hover { color: var(--ink); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 88vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 0.5px solid var(--rule);
+    }
+
+    .hero-left {
+      padding: 5rem 3rem 5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      border-right: 0.5px solid var(--rule);
+    }
+
+    .hero-kicker {
+      font-size: 8.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      color: var(--ghost);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-name {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 2rem;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--ghost);
+    }
+
+    .hero-desc {
+      font-size: 11.5px;
+      color: var(--ghost);
+      max-width: 300px;
+      line-height: 1.9;
+    }
+
+    .hero-right {
+      padding: 5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero-stat-group {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .hero-stat .label {
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--ghost);
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-stat .value {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Geist Mono', monospace;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      text-decoration: none;
+      padding: 9px 18px;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      background: var(--white);
+      color: var(--ink);
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+    }
+
+    .btn:hover {
+      background: var(--warm);
+      border-color: var(--ghost);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* ─── SECTION WRAPPER ─── */
+    .section-wrap {
+      border-bottom: 0.5px solid var(--rule);
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      border-bottom: 0.5px solid var(--warm);
+      padding: 1rem 3rem;
+      align-items: center;
+    }
+
+    .section-header .num {
+      font-size: 8.5px;
+      letter-spacing: 0.14em;
+      color: var(--ghost);
+    }
+
+    .section-header .title {
+      font-size: 8.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--ghost);
+    }
+
+    .section-body {
+      padding: 2.5rem 3rem;
+    }
+
+    /* ─── SKILLS ─── */
+    .skills-layout {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 0;
+    }
+
+    .skills-intro {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      line-height: 1.5;
+      font-style: italic;
+      color: var(--ghost);
+      padding-right: 2rem;
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      align-content: flex-start;
+    }
+
+    .skill-tag {
+      border: 0.5px solid var(--rule);
+      background: var(--white);
+      padding: 5px 13px;
+      font-size: 10.5px;
+      border-radius: 2px;
+      transition: background 0.18s, border-color 0.18s, color 0.18s;
+      cursor: default;
+    }
+
+    .skill-tag:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--paper);
+    }
+
+    /* ─── LEARNING ─── */
+    .learning-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .learning-item {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 1rem 0;
+      border-bottom: 0.5px solid var(--warm);
+      font-size: 12px;
+      transition: color 0.15s;
+    }
+
+    .learning-item:hover { color: var(--accent); }
+
+    .learning-item:nth-child(odd) {
+      padding-right: 2rem;
+      border-right: 0.5px solid var(--warm);
+    }
+
+    .learning-item:nth-child(even) {
+      padding-left: 2rem;
+    }
+
+    .learning-item .num {
+      font-size: 8.5px;
+      color: var(--ghost);
+      letter-spacing: 0.1em;
+      flex-shrink: 0;
+    }
+
+    /* ─── PROJECTS ─── */
+    .project-list {
+      list-style: none;
+    }
+
+    .project-row {
+      display: grid;
+      grid-template-columns: 48px 1fr 1fr 120px;
+      align-items: start;
+      gap: 2rem;
+      padding: 1.5rem 0;
+      border-bottom: 0.5px solid var(--warm);
+      transition: background 0.15s;
+      border-radius: 2px;
+    }
+
+    .project-row:hover {
+      background: var(--white);
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+      margin-left: -0.75rem;
+      margin-right: -0.75rem;
+    }
+
+    .project-row .pnum {
+      font-size: 9px;
+      color: var(--ghost);
+      padding-top: 2px;
+    }
+
+    .project-row .ptitle {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--ink);
+    }
+
+    .project-row .pdesc {
+      font-size: 11px;
+      color: var(--ghost);
+      line-height: 1.7;
+    }
+
+    .project-row .pstack {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      text-align: right;
+      line-height: 1.9;
+    }
+
+    /* ─── CONNECT ─── */
+    .connect-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+
+    .connect-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 1.75rem 1.5rem;
+      border-right: 0.5px solid var(--warm);
+      text-decoration: none;
+      color: var(--ink);
+      transition: background 0.15s;
+    }
+
+    .connect-item:last-child { border-right: none; }
+    .connect-item:hover { background: var(--white); }
+
+    .connect-item .ci-type {
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--ghost);
+    }
+
+    .connect-item .ci-handle {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--accent);
+      word-break: break-all;
+    }
+
+    .connect-item .ci-arrow {
+      font-size: 9px;
+      color: var(--rule);
+      margin-top: 4px;
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-left {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--ghost);
+    }
+
+    .footer-right {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 0.75rem;
+      font-style: italic;
+      color: var(--rule);
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 720px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { border-right: none; min-height: 60vh; }
+      .hero-right { padding-top: 2rem; }
+      .section-header, .skills-layout { grid-template-columns: 1fr; }
+      .learning-list, .connect-grid { grid-template-columns: 1fr; }
+      .project-row { grid-template-columns: 32px 1fr; }
+      .project-row .pdesc, .project-row .pstack { grid-column: 2; }
+      .top-nav { padding: 0 1.25rem; }
+      .section-body { padding: 2rem 1.25rem; }
+      .section-header { padding: 0.75rem 1.25rem; }
+      .hero-left, .hero-right { padding: 3rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top-nav">
+  <div class="logo">Mahi Gandhi <em>/ Portfolio</em></div>
+  <ul class="top-nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#learning">Learning</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#connect">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero reveal" id="home">
+  <div class="hero-left">
+    <p class="hero-kicker">Economics · Data Science · Visual Design</p>
+    <h1 class="hero-name">Mahi<br><em>Gandhi</em></h1>
+    <p class="hero-desc">Studying at Gokhale Institute of Politics and Economics. Working at the intersection of data, design, and creative systems.</p>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stat-group">
+      <div class="hero-stat">
+        <div class="label">Based in</div>
+        <div class="value">Pune, India</div>
+      </div>
+      <div class="hero-stat">
+        <div class="label">Studying</div>
+        <div class="value">Economics<br>& Data Science</div>
+      </div>
+      <div class="hero-stat">
+        <div class="label">Focus areas</div>
+        <div class="value">Data · Design<br>Automation</div>
+      </div>
+    </div>
+    <div class="hero-cta">
+      <a href="pdf/Mahi_Gandhi_Academic_CV.pdf" target="_blank" class="btn btn-primary">↗ Academic CV</a>
+      <a href="#connect" class="btn">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<div class="section-wrap reveal" id="skills">
+  <div class="section-header">
+    <span class="num">01 —</span>
+    <span class="title">Technical Skills</span>
+  </div>
+  <div class="section-body">
+    <div class="skills-layout">
+      <p class="skills-intro">Tools I work<br>and build with.</p>
+      <div class="skills-grid">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">HTML</span>
+        <span class="skill-tag">Java</span>
+        <span class="skill-tag">Dashboard Design</span>
+        <span class="skill-tag">Data Analysis</span>
+        <span class="skill-tag">TouchDesigner</span>
+        <span class="skill-tag">Adobe Photoshop</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LEARNING -->
+<div class="section-wrap reveal" id="learning">
+  <div class="section-header">
+    <span class="num">02 —</span>
+    <span class="title">Currently Learning</span>
+  </div>
+  <div class="section-body">
+    <ul class="learning-list">
+      <li class="learning-item"><span class="num">01</span> AI Agent Design</li>
+      <li class="learning-item"><span class="num">02</span> Operational Analytics</li>
+      <li class="learning-item"><span class="num">03</span> Dashboard Systems</li>
+      <li class="learning-item"><span class="num">04</span> Prompt Engineering</li>
+      <li class="learning-item"><span class="num">05</span> Intelligent Automation Workflows</li>
+    </ul>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div class="section-wrap reveal" id="projects">
+  <div class="section-header">
+    <span class="num">03 —</span>
+    <span class="title">Projects</span>
+  </div>
+  <div class="section-body">
+    <ul class="project-list">
+      <li class="project-row">
+        <span class="pnum">001</span>
+        <span class="ptitle">Data Dashboard</span>
+        <span class="pdesc">An interactive economics dashboard visualising regional GDP trends and policy outcomes.</span>
+        <span class="pstack">Python<br>SQL<br>Plotly</span>
+      </li>
+      <li class="project-row">
+        <span class="pnum">002</span>
+        <span class="ptitle">Visual Automation</span>
+        <span class="pdesc">Generative visual systems built in TouchDesigner, responding to real-time data inputs.</span>
+        <span class="pstack">TouchDesigner<br>Python</span>
+      </li>
+      <li class="project-row">
+        <span class="pnum">003</span>
+        <span class="ptitle">Creative Coding</span>
+        <span class="pdesc">Experimental animations and interactive sketches exploring data as an aesthetic medium.</span>
+        <span class="pstack">HTML<br>CSS<br>JavaScript</span>
+      </li>
+      <li class="project-row">
+        <span class="pnum">004</span>
+        <span class="ptitle">Research Pipeline</span>
+        <span class="pdesc">Scraping and analysis pipeline for economic policy documents and public datasets.</span>
+        <span class="pstack">Python<br>SQL<br>Pandas</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- CONNECT -->
+<div class="section-wrap reveal" id="connect">
+  <div class="section-header">
+    <span class="num">04 —</span>
+    <span class="title">Connect</span>
+  </div>
+  <div class="connect-grid">
+    <a href="https://www.linkedin.com/in/mahi-gandhi-336780335" target="_blank" class="connect-item">
+      <span class="ci-type">LinkedIn</span>
+      <span class="ci-handle">mahi-gandhi-336780335</span>
+      <span class="ci-arrow">↗</span>
+    </a>
+    <a href="https://github.com/mahi-gandhi" target="_blank" class="connect-item">
+      <span class="ci-type">GitHub</span>
+      <span class="ci-handle">mahi-gandhi</span>
+      <span class="ci-arrow">↗</span>
+    </a>
+    <a href="mailto:mahi.ds25-29@gipe.ac.in" class="connect-item">
+      <span class="ci-type">Email</span>
+      <span class="ci-handle">mahi.ds25-29@gipe.ac.in</span>
+      <span class="ci-arrow">↗</span>
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <span class="footer-left">Mahi Gandhi · <span id="yr"></span></span>
+  <span class="footer-right">Gokhale Institute · Pune</span>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  reveals.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

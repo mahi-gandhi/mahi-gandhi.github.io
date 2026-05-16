@@ -76,13 +76,12 @@
 
     .sidebar-name {
       font-family: 'Libre Baskerville', serif;
-      font-size: 1.2rem;
+      font-size: 2.4rem;
       font-weight: 400;
-      line-height: 1.15;
-      color: rgba(245, 240, 236, 0.7);
+      line-height: 1.0;
+      color: var(--paper);
       margin-bottom: 0.4rem;
       letter-spacing: -0.01em;
-      white-space: nowrap;
     }
 
     .sidebar-name em {
@@ -186,11 +185,11 @@
 
     /* ── HERO ── */
     .hero {
-      min-height: auto;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
-      padding: 1.5rem 3.5rem 3rem;
+      justify-content: flex-end;
+      padding: 4rem 3.5rem 3rem;
       border-bottom: 0.5px solid var(--rule);
       position: relative;
     }
@@ -324,10 +323,19 @@
     /* ── SKILLS ── */
     .skills-layout {
       display: grid;
+      grid-template-columns: 180px 1fr;
       gap: 2rem;
       align-items: start;
     }
 
+    .skills-intro {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--rule);
+      line-height: 1.5;
+      padding-top: 3px;
+    }
 
     .skills-grid {
       display: flex;
@@ -554,32 +562,25 @@
       .project-row .pstack { grid-column: 2; text-align: left; }
       .footer { padding: 1.25rem 1.5rem; }
     }
-
-    .sidebar-name img {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;       /* makes it a circle */
-  object-fit: cover;        /* crops it neatly */
-  display: block;
-  margin-bottom: 1rem;
-  border: 1px solid rgba(210,193,182,0.2);
-}
-
   </style>
 </head>
 <body>
 
 <!-- ════ SIDEBAR ════ -->
-
 <aside class="sidebar">
   <div class="sidebar-eyebrow"></div>
 
-  <div class="sidebar-name" style="text-align: center;">
-    <img src="images/1000150548.png" alt="Mahi Gandhi" style="margin: 0 auto;" />
+  <div class="sidebar-name"> Mahi Gandhi
+    <br>
+    <em>Economics & Data Science</em>
   </div>
 
   <div class="sidebar-divider"></div>
-  
+
+  <p class="sidebar-bio">
+    
+  </p>
+
   <ul class="sidebar-nav">
     <li><a href="#hero" class="active">Home</a></li>
     <li><a href="#skills">Skills</a></li>
@@ -589,7 +590,7 @@
   </ul>
 
   <div class="sidebar-links">
-    <a href="pdf/CV EDITED.pdf" target="_blank">
+    <a href="pdf/Mahi_Gandhi_Academic_CV.pdf" target="_blank">
       <span class="arrow">↗</span> Academic CV
     </a>
     <a href="https://github.com/mahi-gandhi" target="_blank">
@@ -606,16 +607,17 @@
 
   <!-- HERO -->
   <section class="hero reveal" id="hero">
+    <span class="hero-tag">Pune · India</span>
+    <div class="hero-number"></div>
     <h1 class="hero-headline">
-        <br>
       Mahi<br><em>Gandhi</em>
     </h1>
     <div class="hero-meta">
       <p class="hero-desc">
-        I am studying Economics and Data Science at Gokhale Institute of Politics and Economics. Alongside academics, I work on creative side projects spanning visual art, animations, and creative coding.
+        Studying at Gokhale Institute of Politics and Economics. I work on data, creative coding, visual design, and intelligent systems.
       </p>
       <div class="hero-cta">
-        <a href="pdf/CV EDITED.pdf" target="_blank" class="btn btn-primary">↗ Academic CV</a>
+        <a href="pdf/Mahi_Gandhi_Academic_CV.pdf" target="_blank" class="btn btn-primary">↗ Academic CV</a>
         <a href="#connect" class="btn">Get in touch</a>
       </div>
     </div>
@@ -629,6 +631,7 @@
     </div>
     <div class="section-body">
       <div class="skills-layout">
+        <p class="skills-intro">Tools I work<br>and build with.</p>
         <div class="skills-grid">
           <span class="skill-tag">Python</span>
           <span class="skill-tag">SQL</span>
@@ -669,8 +672,29 @@
     <div class="section-body">
       <ul class="project-list">
         <li class="project-row">
-          <span class="ptitle">Projects coming soon!</span>
-        </li> <!-- refer to mix format.html for project section code -->
+          <span class="pnum">001</span>
+          <span class="ptitle">Data Dashboard</span>
+          <span class="pdesc">Interactive economics dashboard visualising regional GDP trends and policy outcomes.</span>
+          <span class="pstack">Python<br>SQL<br>Plotly</span>
+        </li>
+        <li class="project-row">
+          <span class="pnum">002</span>
+          <span class="ptitle">Visual Automation</span>
+          <span class="pdesc">Generative visual systems built in TouchDesigner, responding to real-time data inputs.</span>
+          <span class="pstack">TouchDesigner<br>Python</span>
+        </li>
+        <li class="project-row">
+          <span class="pnum">003</span>
+          <span class="ptitle">Creative Coding</span>
+          <span class="pdesc">Experimental animations and interactive sketches exploring data as an aesthetic medium.</span>
+          <span class="pstack">HTML<br>CSS · JS</span>
+        </li>
+        <li class="project-row">
+          <span class="pnum">004</span>
+          <span class="ptitle">Research Pipeline</span>
+          <span class="pdesc">Scraping and analysis pipeline for economic policy documents and public datasets.</span>
+          <span class="pstack">Python<br>SQL · Pandas</span>
+        </li>
       </ul>
     </div>
   </div>
@@ -702,12 +726,15 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <span class="footer-left"></span>
+    <span class="footer-left">Mahi Gandhi · <span id="yr"></span></span>
+    <span class="footer-right">India</span>
   </footer>
 
 </main>
 
 <script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver(entries => {

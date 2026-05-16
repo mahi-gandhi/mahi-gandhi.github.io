@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mahi Gandhi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink:     #1B3C53;
+      --paper:   #F5F0EC;
+      --warm:    #EDE3DC;
+      --rule:    #D2C1B6;
+      --accent:  #234C6A;
+      --muted:   #456882;
+      --tag-bg:  #EAE0D8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      line-height: 1.75;
+      min-height: 100vh;
+      display: flex;
+    }
+
+    /* ── LEFT SIDEBAR (fixed) ── */
+    .sidebar {
+      width: 260px;
+      flex-shrink: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      background: var(--ink);
+      color: var(--paper);
+      display: flex;
+      flex-direction: column;
+      padding: 2.5rem 2rem;
+      overflow-y: auto;
+    }
+
+    .sidebar-eyebrow {
+      font-size: 8.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: rgba(210,193,182,0.6);
+      margin-bottom: 2.5rem;
+    }
+
+    .sidebar-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      font-weight: 400;
+      line-height: 1.05;
+      color: var(--paper);
+      margin-bottom: 0.6rem;
+    }
+
+    .sidebar-name em {
+      font-style: italic;
+      color: rgba(210,193,182,0.65);
+      display: block;
+      font-size: 1.1rem;
+      margin-top: 0.3rem;
+    }
+
+    .sidebar-bio {
+      font-size: 11px;
+      color: rgba(210,193,182,0.7);
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+      border-top: 0.5px solid rgba(210,193,182,0.15);
+      padding-top: 1.5rem;
+    }
+
+    .sidebar-nav {
+      list-style: none;
+      margin-bottom: auto;
+    }
+
+    .sidebar-nav li {
+      margin-bottom: 0.1rem;
+    }
+
+    .sidebar-nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: rgba(210,193,182,0.55);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      padding: 0.55rem 0;
+      border-bottom: 0.5px solid rgba(210,193,182,0.1);
+      transition: color 0.2s;
+    }
+
+    .sidebar-nav a:hover { color: var(--paper); }
+
+    .sidebar-nav a::before {
+      content: '';
+      width: 18px;
+      height: 0.5px;
+      background: currentColor;
+      flex-shrink: 0;
+    }
+
+    .sidebar-links {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .sidebar-links a {
+      font-size: 9.5px;
+      color: rgba(210,193,182,0.4);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      transition: color 0.2s;
+    }
+
+    .sidebar-links a:hover { color: rgba(210,193,182,0.9); }
+
+    .sidebar-links a span {
+      color: rgba(210,193,182,0.25);
+      margin-right: 5px;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .main {
+      margin-left: 260px;
+      flex: 1;
+      padding: 3.5rem 3.5rem 5rem 4rem;
+      max-width: 820px;
+    }
+
+    /* ── SECTION ── */
+    .section {
+      margin-bottom: 4rem;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: rise 0.5s ease forwards;
+    }
+
+    .section:nth-child(1) { animation-delay: 0.05s; }
+    .section:nth-child(2) { animation-delay: 0.12s; }
+    .section:nth-child(3) { animation-delay: 0.19s; }
+    .section:nth-child(4) { animation-delay: 0.26s; }
+    .section:nth-child(5) { animation-delay: 0.33s; }
+
+    @keyframes rise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1.75rem;
+    }
+
+    .section-label span {
+      font-size: 8.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--muted);
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 0.5px;
+      background: var(--rule);
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .skill-tag {
+      background: var(--tag-bg);
+      border: 0.5px solid var(--rule);
+      color: var(--ink);
+      font-size: 10.5px;
+      padding: 5px 13px;
+      border-radius: 2px;
+      transition: background 0.18s, border-color 0.18s;
+    }
+
+    .skill-tag:hover {
+      background: var(--warm);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ── LEARNING ── */
+    .learning-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .learning-table tr {
+      border-bottom: 0.5px solid var(--warm);
+      transition: background 0.15s;
+    }
+
+    .learning-table tr:first-child {
+      border-top: 0.5px solid var(--warm);
+    }
+
+    .learning-table tr:hover {
+      background: var(--warm);
+    }
+
+    .learning-table td {
+      padding: 0.75rem 0.5rem;
+      font-size: 11.5px;
+    }
+
+    .learning-table .idx {
+      color: var(--muted);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      width: 32px;
+    }
+
+    .learning-table .arrow {
+      color: var(--accent);
+      font-size: 10px;
+      width: 24px;
+      text-align: right;
+      padding-right: 0;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+
+    .learning-table tr:hover .arrow { opacity: 1; }
+
+    /* ── PROJECTS (two-col mini grid) ── */
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .project-card {
+      border: 0.5px solid var(--rule);
+      padding: 1.2rem;
+      background: white;
+      border-radius: 2px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 22px rgba(22,21,15,0.06);
+    }
+
+    .project-num {
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      margin-bottom: 0.6rem;
+    }
+
+    .project-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .project-desc {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 0.8rem;
+    }
+
+    .project-stack {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+    }
+
+    /* ── CONNECT ── */
+    .connect-rows {
+      display: flex;
+      flex-direction: column;
+      border: 0.5px solid var(--rule);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .connect-row {
+      display: grid;
+      grid-template-columns: 90px 1fr auto;
+      align-items: center;
+      gap: 16px;
+      padding: 0.9rem 1rem;
+      border-bottom: 0.5px solid var(--warm);
+      background: white;
+      text-decoration: none;
+      color: var(--ink);
+      transition: background 0.15s;
+    }
+
+    .connect-row:last-child { border-bottom: none; }
+    .connect-row:hover { background: var(--tag-bg); }
+
+    .connect-row .type {
+      font-size: 8.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+    }
+
+    .connect-row .handle {
+      font-size: 11px;
+      color: var(--accent);
+    }
+
+    .connect-row .ext {
+      font-size: 9px;
+      color: var(--rule);
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      margin-top: 5rem;
+      font-size: 8.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer::before {
+      content: '';
+      width: 30px;
+      height: 0.5px;
+      background: var(--rule);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 820px) {
+      body { display: block; }
+      .sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+      }
+      .main {
+        margin-left: 0;
+        padding: 2rem 1.5rem;
+      }
+      .project-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-eyebrow">Portfolio · 2025</div>
+  <div class="sidebar-name">
+    Mahi<br>Gandhi
+    <em>Economics & Data Science</em>
+  </div>
+
+  <p class="sidebar-bio">
+    Studying at Gokhale Institute of Politics and Economics. I work at the intersection of data, design, and creative systems.
+  </p>
+
+  <ul class="sidebar-nav">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#learning">Learning</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#connect">Connect</a></li>
+  </ul>
+
+  <div class="sidebar-links">
+    <a href="pdf/Mahi_Gandhi_Academic_CV.pdf" target="_blank"><span>↗</span> Academic CV</a>
+    <a href="https://github.com/mahi-gandhi" target="_blank"><span>↗</span> GitHub</a>
+    <a href="https://www.linkedin.com/in/mahi-gandhi-336780335" target="_blank"><span>↗</span> LinkedIn</a>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- Skills -->
+  <section class="section" id="skills">
+    <div class="section-label"><span>Technical Skills</span></div>
+    <div class="skills-grid">
+      <span class="skill-tag">Python</span>
+      <span class="skill-tag">SQL</span>
+      <span class="skill-tag">HTML</span>
+      <span class="skill-tag">Java</span>
+      <span class="skill-tag">Dashboard Design</span>
+      <span class="skill-tag">Data Analysis</span>
+      <span class="skill-tag">TouchDesigner</span>
+      <span class="skill-tag">Adobe Photoshop</span>
+    </div>
+  </section>
+
+  <!-- Learning -->
+  <section class="section" id="learning">
+    <div class="section-label"><span>Currently Learning</span></div>
+    <table class="learning-table">
+      <tr>
+        <td class="idx">01</td>
+        <td>AI Agent Design</td>
+        <td class="arrow">→</td>
+      </tr>
+      <tr>
+        <td class="idx">02</td>
+        <td>Operational Analytics</td>
+        <td class="arrow">→</td>
+      </tr>
+      <tr>
+        <td class="idx">03</td>
+        <td>Dashboard Systems</td>
+        <td class="arrow">→</td>
+      </tr>
+      <tr>
+        <td class="idx">04</td>
+        <td>Prompt Engineering</td>
+        <td class="arrow">→</td>
+      </tr>
+      <tr>
+        <td class="idx">05</td>
+        <td>Intelligent Automation Workflows</td>
+        <td class="arrow">→</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- Projects -->
+  <section class="section" id="projects">
+    <div class="section-label"><span>Projects</span></div>
+    <div class="project-grid">
+      <div class="project-card">
+        <div class="project-num">001</div>
+        <div class="project-title">Data Dashboard</div>
+        <div class="project-desc">An interactive economics dashboard visualising regional GDP trends and policy outcomes.</div>
+        <div class="project-stack">Python · SQL · Plotly</div>
+      </div>
+      <div class="project-card">
+        <div class="project-num">002</div>
+        <div class="project-title">Visual Automation</div>
+        <div class="project-desc">Generative visual systems built in TouchDesigner, responding to real-time data inputs.</div>
+        <div class="project-stack">TouchDesigner · Python</div>
+      </div>
+      <div class="project-card">
+        <div class="project-num">003</div>
+        <div class="project-title">Creative Coding</div>
+        <div class="project-desc">Experimental animations and interactive sketches exploring data as an aesthetic medium.</div>
+        <div class="project-stack">HTML · CSS · JavaScript</div>
+      </div>
+      <div class="project-card">
+        <div class="project-num">004</div>
+        <div class="project-title">Research Tool</div>
+        <div class="project-desc">A scraping and analysis pipeline for economic policy documents and public datasets.</div>
+        <div class="project-stack">Python · SQL · Pandas</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Connect -->
+  <section class="section" id="connect">
+    <div class="section-label"><span>Connect</span></div>
+    <div class="connect-rows">
+      <a href="https://www.linkedin.com/in/mahi-gandhi-336780335" target="_blank" class="connect-row">
+        <span class="type">LinkedIn</span>
+        <span class="handle">mahi-gandhi-336780335</span>
+        <span class="ext">↗</span>
+      </a>
+      <a href="https://github.com/mahi-gandhi" target="_blank" class="connect-row">
+        <span class="type">GitHub</span>
+        <span class="handle">mahi-gandhi</span>
+        <span class="ext">↗</span>
+      </a>
+      <a href="mailto:mahi.ds25-29@gipe.ac.in" class="connect-row">
+        <span class="type">Email</span>
+        <span class="handle">mahi.ds25-29@gipe.ac.in</span>
+        <span class="ext">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <div class="footer">mahi gandhi · <span id="yr"></span></div>
+
+</main>
+
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>

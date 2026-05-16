@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mahi Gandhi</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --blue:       #647FBC;
+      --blue-light: #91ADC8;
+      --mint:       #AED6CF;
+      --cream:      #FFF6DD;
+      --yellow:     #FFE394;
+      --off-white:  #F2F6F1;
+      --teal:       #B8DFD8;
+      --navy:       #4C4C6D;
+      --navy-dark:  #2E2E45;
+      --text:       #1A1A2E;
+      --muted:      #6B6B88;
+      --bg:         #F7F7F5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      line-height: 1.8;
+      display: flex;
+      justify-content: center;
+      padding: 3rem 1.25rem 5rem;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 650px;
+    }
+
+    /* ───────────────── Header ───────────────── */
+
+    .header {
+      background: var(--yellow);
+      border-radius: 12px;
+      padding: 2.75rem 2.5rem 2.4rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 45px rgba(46,46,69,0.08);
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -45px;
+      right: -45px;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      left: 55px;
+      width: 85px;
+      height: 85px;
+      border-radius: 50%;
+      background: rgba(100,127,188,0.08);
+    }
+
+    .header-eyebrow {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--blue);
+      margin-bottom: 0.75rem;
+      opacity: 0.8;
+    }
+
+    .header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.4rem;
+      font-weight: 300;
+      color: var(--navy-dark);
+      line-height: 1.05;
+      margin-bottom: 0.7rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-sub {
+      font-size: 10.5px;
+      color: var(--navy);
+      letter-spacing: 0.04em;
+      opacity: 0.9;
+      max-width: 450px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ───────────────── Nav ───────────────── */
+
+    .nav-bar {
+      display: flex;
+      background: var(--navy-dark);
+      border-radius: 0 0 4px 4px;
+      overflow: hidden;
+      margin-bottom: 3rem;
+    }
+
+    .nav-bar a {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      text-decoration: none;
+      color: rgba(255,255,255,0.6);
+      padding: 0.8rem 1rem;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: 0.2s ease;
+      border-right: 0.5px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-bar a:last-child {
+      border-right: none;
+    }
+
+    .nav-bar a:hover {
+      background: rgba(255,255,255,0.06);
+      color: var(--cream);
+    }
+
+    .nav-bar svg {
+      width: 13px;
+      height: 13px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ───────────────── Bio ───────────────── */
+
+    .bio {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      line-height: 1.95;
+      font-weight: 300;
+      padding-left: 1.3rem;
+      border-left: 2px solid var(--blue);
+      margin-bottom: 3rem;
+      color: var(--text);
+    }
+
+    /* ───────────────── Sections ───────────────── */
+
+    .section {
+      margin-bottom: 3rem;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1.25rem;
+    }
+
+    .section-head .label {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .section-head .line {
+      flex: 1;
+      height: 0.5px;
+      background: var(--teal);
+    }
+
+    /* ───────────────── Tags ───────────────── */
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      border: 0.5px solid var(--blue-light);
+      padding: 5px 14px;
+      border-radius: 2px;
+      font-size: 10.5px;
+      color: var(--navy);
+      transition: 0.2s ease;
+    }
+
+    .tag:hover {
+      background: var(--mint);
+      border-color: var(--mint);
+    }
+
+    /* ───────────────── Learning ───────────────── */
+
+    .learning-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .learning-list li {
+      display: flex;
+      gap: 14px;
+      align-items: baseline;
+      font-size: 12.5px;
+    }
+
+    .learning-list .num {
+      color: var(--muted);
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      min-width: 18px;
+    }
+
+    /* ───────────────── Projects ───────────────── */
+
+    .projects {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .project-card {
+      background: white;
+      border: 0.5px solid var(--teal);
+      padding: 1.2rem 1.25rem;
+      transition: 0.25s ease;
+      border-radius: 4px;
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(46,46,69,0.05);
+      background: var(--off-white);
+    }
+
+    .project-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--navy-dark);
+      margin-bottom: 0.6rem;
+    }
+
+    .project-desc {
+      font-size: 12px;
+      color: var(--text);
+      line-height: 1.8;
+      margin-bottom: 0.7rem;
+    }
+
+    .project-stack {
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ───────────────── Connect ───────────────── */
+
+    .connect-list {
+      list-style: none;
+      border: 0.5px solid var(--teal);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .connect-list li {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: white;
+      padding: 0.85rem 1rem;
+      border-bottom: 0.5px solid var(--teal);
+      transition: 0.15s ease;
+    }
+
+    .connect-list li:last-child {
+      border-bottom: none;
+    }
+
+    .connect-list li:hover {
+      background: var(--off-white);
+    }
+
+    .icon {
+      width: 28px;
+      height: 28px;
+      border: 0.5px solid var(--teal);
+      background: var(--off-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    .icon svg {
+      width: 13px;
+      height: 13px;
+      stroke: var(--blue);
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .connect-list a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    .connect-list a:hover {
+      text-decoration: underline;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    /* ───────────────── Footer ───────────────── */
+
+    .footer {
+      margin-top: 4rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      text-transform: uppercase;
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+
+    .footer span {
+      width: 28px;
+      height: 0.5px;
+      background: var(--teal);
+    }
+
+    /* ───────────────── Mobile ───────────────── */
+
+    @media (max-width: 600px) {
+
+      body {
+        padding-top: 2rem;
+      }
+
+      .header {
+        padding: 2.2rem 1.8rem;
+      }
+
+      .header h1 {
+        font-size: 2.5rem;
+      }
+
+      .bio {
+        font-size: 1.05rem;
+      }
+
+      .nav-bar a {
+        font-size: 8.5px;
+        padding: 0.75rem 0.5rem;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+<main class="page">
+
+  <!-- Header -->
+
+  <header class="header">
+
+    <div class="header-eyebrow">
+      Economics · Data Science · Visual Design 
+    </div>
+
+    <h1>Mahi Gandhi</h1>
+
+  </header>
+
+  <!-- Nav -->
+
+  <nav class="nav-bar">
+
+    <a href="pdf/Mahi_Gandhi_Academic_CV.pdf" target="_blank">
+      <svg viewBox="0 0 24 24">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+      </svg>
+      Academic CV
+    </a>
+
+    <a href="https://github.com/" target="_blank">
+      <svg viewBox="0 0 24 24">
+        <path d="M9 19c-5 1.5-5-2.5-7-3"/>
+        <path d="M15 22v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 19 4.77 5.07 5.07 0 0 0 18.91 1S17.73.65 15 2.48a13.38 13.38 0 0 0-6 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77 5.44 5.44 0 0 0 3.5 8.52c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+      </svg>
+      GitHub
+    </a>
+
+    <a href="https://www.linkedin.com/" target="_blank">
+      <svg viewBox="0 0 24 24">
+        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/>
+        <rect x="2" y="9" width="4" height="12"/>
+        <circle cx="4" cy="4" r="2"/>
+      </svg>
+      LinkedIn
+    </a>
+
+  </nav>
+
+  <!-- Bio -->
+
+  <p class="bio">
+I am studying Economics and Data Science at Gokhale Institute of Politics and Economics. Alongside academics, I work on creative side projects spanning visual art, animations, and creative coding.
+  </p>
+
+  <!-- Skills -->
+
+  <section class="section">
+
+    <div class="section-head">
+      <span class="label">Technical Skills</span>
+      <span class="line"></span>
+    </div>
+
+    <div class="tags">
+      <span class="tag">Python</span>
+      <span class="tag">SQL</span>
+      <span class="tag">HTML</span>
+      <span class="tag">Java</span>
+      <span class="tag">Dashboard Design</span>
+      <span class="tag">Data Analysis</span>
+      <span class="tag">TouchDesigner</span>
+      <span class="tag">Adobe Photoshop</span>
+    </div>
+
+  </section>
+
+  <!-- Projects -->
+
+  <!-- Learning -->
+
+  <section class="section">
+
+    <div class="section-head">
+      <span class="label">Currently Learning</span>
+      <span class="line"></span>
+    </div>
+
+    <ul class="learning-list">
+      <li><span class="num">01</span> AI Agent Design</li>
+      <li><span class="num">02</span> Operational Analytics</li>
+      <li><span class="num">03</span> Dashboard Systems</li>
+      <li><span class="num">04</span> Prompt Engineering</li>
+      <li><span class="num">05</span> Intelligent Automation Workflows</li>
+    </ul>
+
+  </section>
+
+  <!-- Connect -->
+
+  <section class="section">
+
+    <div class="section-head">
+      <span class="label">Connect</span>
+      <span class="line"></span>
+    </div>
+
+    <ul class="connect-list">
+
+      <li>
+        <span class="icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </span>
+
+        <a href="https://www.linkedin.com/in/mahi-gandhi-336780335" target="_blank">
+          linkedin.com/in/mahi-gandhi-336780335
+        </a>
+      </li>
+
+      <li>
+        <span class="icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M9 19c-5 1.5-5-2.5-7-3"/>
+            <path d="M15 22v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 19 4.77 5.07 5.07 0 0 0 18.91 1S17.73.65 15 2.48a13.38 13.38 0 0 0-6 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77 5.44 5.44 0 0 0 3.5 8.52c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+          </svg>
+        </span>
+
+        <a href="https://github.com/" target="_blank">
+          github.com/mahi-gandhi
+        </a>
+      </li>
+
+      <li>
+        <span class="icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </span>
+
+        <a href="mailto:mahi.ds25-29@gipe.ac.in">
+          mahi.ds25-29@gipe.ac.in
+        </a>
+      </li>
+
+    </ul>
+
+  </section>
+
+  <!-- Footer -->
+
+  <p class="footer">
+    <span></span>
+    mahi-gandhi · <span class="footer-year"></span>
+    <span></span>
+  </p>
+
+</main>
+
+<script>
+  document.querySelector('.footer-year').textContent =
+    new Date().getFullYear();
+</script>
+
+</body>
+</html>
